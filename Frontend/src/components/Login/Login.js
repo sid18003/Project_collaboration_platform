@@ -1,6 +1,6 @@
 // LoginPage.js
 import React, { useState } from 'react';
-
+const checkLoginStatus=false;
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,6 +31,7 @@ const LoginPage = () => {
 
           const data = await response.json();
           console.log('Login successful:', data);
+          checkLoginStatus=true;
           // Handle successful login (e.g., redirect, show a message, etc.)
       } catch (err) {
           setError(err.message);

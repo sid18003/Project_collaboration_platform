@@ -1,0 +1,31 @@
+class Solution {
+public:
+set<int> st;
+   int find(int row, int currScore, vector<vector<int>>& grid) 
+   {
+       if (row == grid.size()) { 
+         return currScore;
+          }
+          int maxi = INT_MIN;
+           for (int i = 0; i < grid[row].size(); i++) {
+             int value = grid[row][i];
+              if (st.find(value) == st.end()) {
+                st.insert(value);
+                 maxi = max(maxi, find(row + 1, currScore + value, grid)); 
+                 st.erase(value);
+                  }
+                   } 
+                   return maxi;
+                    } 
+                    int maxScore(vector<vector<int>>& grid) {
+                      int result = INT_MIN; 
+                      for (int i = 0; i < grid[0].size(); i++) {
+             int value = grid[0][i]; 
+             st.insert(value); 
+             result = max(result, find(1, value, grid)); 
+             st.erase(value);
+              } 
+               return result; 
+              } 
+              };
+                          

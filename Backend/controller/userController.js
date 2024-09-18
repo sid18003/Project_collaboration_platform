@@ -17,7 +17,9 @@ exports.registerUser = async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
+        if(role==''){
+            role="student"
+        }
         // Create a new user
         const user = new User({
             name,
